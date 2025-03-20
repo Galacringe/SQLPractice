@@ -55,7 +55,7 @@ SELECT @@SERVERNAME, @@VERSION, @@ERROR, @@ROWCOUNT
 -- @@ERROR SQL문이 성공적으로 실행되면 0을 반환하고 오류가 발생하면 해당 오류번호를 반환한다.
 -- @@ROWCOUNT 최근 실행된 SQL문의 영향을 받은 행의 수를 반환한다.
 -- @@IDENTITY 마지막으로 삽입된 identity 값을 반환한다.
--- @@TRANCOUNT 현재연결에서발생한 BEGIN TRANSACTION 문의 수를 반환한다
+-- @@TRANCOUNT 현재 연결에서 발생한 BEGIN TRANSACTION 문의 수를 반환한다
 
 -- # 정수형
 
