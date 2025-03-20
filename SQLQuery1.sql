@@ -78,3 +78,9 @@ SELECT @@SERVERNAME, @@VERSION, @@ERROR, @@ROWCOUNT
  DECLARE @dcm DECIMAL(6,2) = 1234.45
 
  SELECT @i, @b, @dcm
+
+ DECLARE @text CHAR(n) -- n byte
+ DECLARE @str VARCHAR -- 가변 문자열
+
+ DECLARE @image BINARY(n) -- n+4바이트로, 이미지, 영상 등등
+
