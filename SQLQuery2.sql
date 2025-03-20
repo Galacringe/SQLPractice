@@ -1,27 +1,27 @@
--- CONVERT : ÀÚ·áÇüÀ» º¯°æÇÏ´Â ÇÔ¼ö
+-- CONVERT : ìë£Œí˜•ì„ ë³€ê²½í•˜ëŠ” í•¨ìˆ˜
 -- SELECT CONVERT(type(length), originData, style)
--- STYLEÀº º¯¼öÀÇ ¾ç½Ä, ¿¹¸¦ µé¾î YYYY/MM/DDµµ ÀÖÀ» °Å°í, YYMMDD·Îµµ ¾²°í ½ÍÀ» ¼öµµ ÀÖ°í....
+-- STYLEì€ ë³€ìˆ˜ì˜ ì–‘ì‹, ì˜ˆë¥¼ ë“¤ì–´ YYYY/MM/DDë„ ìˆì„ ê±°ê³ , YYMMDDë¡œë„ ì“°ê³  ì‹¶ì„ ìˆ˜ë„ ìˆê³ ....
 
 select getdate()
 select CONVERT(varchar(30),GETDATE(),109)
---½ÇÇàÇØº¸¸é µÑÀÌ ´Ù¸¥ Çü½ÄÀ» °¡Áø °ÍÀ» ¾Ë ¼ö ÀÖÀ½
+--ì‹¤í–‰í•´ë³´ë©´ ë‘˜ì´ ë‹¤ë¥¸ í˜•ì‹ì„ ê°€ì§„ ê²ƒì„ ì•Œ ìˆ˜ ìˆìŒ
 
 select CONVERT(time, getdate())
 select CONVERT(date, getdate())
 select CONVERT(datetime, getdate())
 select CONVERT(datetime2, getdate())
 
--- CONVERT : ÀÚ·áÇüÀ» º¯°æÇÏ´Â ÇÔ¼ö
+-- CONVERT : ìë£Œí˜•ì„ ë³€ê²½í•˜ëŠ” í•¨ìˆ˜
 -- SELECT CONVERT(type(length), originData, style)
--- STYLEÀº º¯¼öÀÇ ¾ç½Ä, ¿¹¸¦ µé¾î YYYY/MM/DDµµ ÀÖÀ» °Å°í, YYMMDD·Îµµ ¾²°í ½ÍÀ» ¼öµµ ÀÖ°í....
+-- STYLEì€ ë³€ìˆ˜ì˜ ì–‘ì‹, ì˜ˆë¥¼ ë“¤ì–´ YYYY/MM/DDë„ ìˆì„ ê±°ê³ , YYMMDDë¡œë„ ì“°ê³  ì‹¶ì„ ìˆ˜ë„ ìˆê³ ....
 
 
--- CAST : µ¿ÀÏÇÏ°Ô ÀÚ·áÇüÀ» º¯°æÇÏ´Â ÇÔ¼ö
+-- CAST : ë™ì¼í•˜ê²Œ ìë£Œí˜•ì„ ë³€ê²½í•˜ëŠ” í•¨ìˆ˜
 -- SELECT CAST(data as type)
 
 SELECT CAST('55' as int)
 
-DECLARE @a VARCHAR(10) = 'SQL Server' -- ÀÌ°Å ¿Ö ÀÛÀºµû¿ÈÇ¥ÀÓ???
+DECLARE @a VARCHAR(10) = 'SQL Server' -- ì´ê±° ì™œ ì‘ì€ë”°ì˜´í‘œì„???
 DECLARE @b INT = 2024
 
 select CONVERT(VARCHAR(5), @b)
@@ -29,21 +29,21 @@ select @a+CONVERT(VARCHAR(5), @b)
 
 select @a+CAST(@b as varchar(5))
 
--- ½Ã½ºÅÛ µ¥ÀÌÅÍ Çü½Ä / ±âÅ¸
+-- ì‹œìŠ¤í…œ ë°ì´í„° í˜•ì‹ / ê¸°íƒ€
 
 --CURSOR
 --TIMESTAMP
 --HIERARCHYID....
 
 
--- ¿¬»ê ÇÔ¼ö
-select abs(-30), abs(20) -- Absolute Àı´ñ°ª
-select CEILING(2.35), floor(2.35) -- ¿Ã¸² ³»¸²(ÃµÀå°ú ¹Ù´Ú)
-select POWER(5,2) -- Áö¼ö 5^2 = 25
-select ROUND(123.4567, 2) -- ¹İ¿Ã¸², ¿É¼Ç ÆÄ¶ó¹ÌÅÍ¿¡ 0 ³ÖÀ¸¸é Á¤¼ö¸¸ Ãâ·Â
-select RAND(), RAND()*100-- 0~1 »çÀÌÀÇ ³­¼ö, ½Ãµå°ª Á¶Á¤ °¡´É
-select SIGN(-10), SIGN(0), SIGN(10) -- ºÎÈ£°ª ¹İÈ¯
-select SQRT(4), SQRT(25) -- Á¦°ö±Ù ¹İÈ¯
+-- ì—°ì‚° í•¨ìˆ˜
+select abs(-30), abs(20) -- Absolute ì ˆëŒ“ê°’
+select CEILING(2.35), floor(2.35) -- ì˜¬ë¦¼ ë‚´ë¦¼(ì²œì¥ê³¼ ë°”ë‹¥)
+select POWER(5,2) -- ì§€ìˆ˜ 5^2 = 25
+select ROUND(123.4567, 2) -- ë°˜ì˜¬ë¦¼, ì˜µì…˜ íŒŒë¼ë¯¸í„°ì— 0 ë„£ìœ¼ë©´ ì •ìˆ˜ë§Œ ì¶œë ¥
+select RAND(), RAND()*100-- 0~1 ì‚¬ì´ì˜ ë‚œìˆ˜, ì‹œë“œê°’ ì¡°ì • ê°€ëŠ¥
+select SIGN(-10), SIGN(0), SIGN(10) -- ë¶€í˜¸ê°’ ë°˜í™˜
+select SQRT(4), SQRT(25) -- ì œê³±ê·¼ ë°˜í™˜
 
 select SQRT(100)
 select ROUND(PI(), 6)
@@ -51,15 +51,14 @@ select POWER(5,3)
 select FLOOR(Rand()*100*0.45)
 
 
--- ¾Æ½ºÅ° ÄÚµå
-
+-- ë¬¸ìì—´ ê´€ë ¨
 select ascii('A') 
 select char(65)
 select left('server',2) -- se
 select right('server',2) -- er
 select lower('Apple') -- LowerCase => apple
 select Upper('Apple') -- UpperCase => APPLE
-select LTRIM('   Hello'), RTRIM('Hello   ') -- Left Trim, Áï ¿ŞÂÊ °ø¹éÀ» Áö¿î´Ù
-select REPLICATE('hello', 3) -- nÈ¸ ·çÇÁ => hello
-select REVERSE('abcdef'),'-'+space(5),'-' --1. ¹İÁ¡ ¾²¸é string ÀÌ¾îÁø´Ù? 2. space´Â °ø¹éÀ» ¸¸µé¾îÁØ´Ù
+select LTRIM('   Hello'), RTRIM('Hello   ') -- Left Trim, ì¦‰ ì™¼ìª½ ê³µë°±ì„ ì§€ìš´ë‹¤
+select REPLICATE('hello', 3) -- níšŒ ë£¨í”„ => hello
+select REVERSE('abcdef'),'-'+space(5),'-' spaceëŠ” ê³µë°±ì„ ë§Œë“¤ì–´ì¤€ë‹¤
 select SUBSTRING('SQLServer',3,2) -- LS
