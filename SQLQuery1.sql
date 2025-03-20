@@ -24,7 +24,7 @@ DECLARE @id INT -- (이거 쓰레기값 어케됨???)
 DECLARE @idx INT = 10
 
 SET @id = 10
-SET @id += 10 -- (++가능한가?)
+SET @id += 10 -- (++은 안됨)
 
 -- # 값을 조회하기 위한 SELECT
 
