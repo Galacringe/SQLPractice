@@ -1,86 +1,131 @@
--- ´Ù¸¥ DB¿¡¼­ µ¥ÀÌÅÍ¸¦ °¡Á®¿À°í ½ÍÀ» ¶§
+-- ë‹¤ë¥¸ DBì—ì„œ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ê³  ì‹¶ì„ ë•Œ
 
-select top 5 * from ¼ºÀû
+select top 5 * from ì„±ì 
 
-select top 1 percent * from ¼ºÀû 
+select top 1 percent * from ì„±ì  
 
-select top 5 percent with ties * from ¼ºÀû -- with ties / Áßº¹ Æ÷ÇÔ
--- with ties´Â order by ¿Í ÇÔ²² ¿Í¾ßÇÔ. ¿Ö³Ä? ÀÏ´Ü ¼ºÀûÀÌ µ¿ÀÏÇÑ ³ðÀ» Áý¾î¿ÔÀ¸´Ï ±×°É ¶Ç Á¤·ÄÇØ¾ßÁö
+select top 5 percent with ties * from ì„±ì  -- with ties / ì¤‘ë³µ í¬í•¨
+-- with tiesëŠ” order by ì™€ í•¨ê»˜ ì™€ì•¼í•¨. ì™œëƒ? ì¼ë‹¨ ì„±ì ì´ ë™ì¼í•œ ë†ˆì„ ì§‘ì–´ì™”ìœ¼ë‹ˆ ê·¸ê±¸ ë˜ ì •ë ¬í•´ì•¼ì§€
 
-select top 5 percent with ties  * from ¼ºÀû order by Á¡¼ö -- with ties / Áßº¹ Æ÷ÇÔ
+select top 5 percent with ties  * from ì„±ì  order by ì ìˆ˜ -- with ties / ì¤‘ë³µ í¬í•¨
 
-set rowcount 1  -- ´ÙÀ½ °á°ú¿¡¼­ ÃÖ´ë 1ÁÙ±îÁö¸¸select top 5 * from ¼ºÀû
-set rowcount 5select top 5 * from ¼ºÀû
+set rowcount 1  -- ë‹¤ìŒ ê²°ê³¼ì—ì„œ ìµœëŒ€ 1ì¤„ê¹Œì§€ë§Œ
+select top 5 * from ì„±ì 
 
---  Çà ÃßÃâ
+set rowcount 5
+select top 5 * from ì„±ì 
 
-set rowcount 0 -- ÃÊ±âÈ­
+--  í–‰ ì¶”ì¶œ
 
-select ÀÌ¸§, Á¡¼ö
-from ¼ºÀû
-where Á¡¼ö >= 90
+set rowcount 0 -- ì´ˆê¸°í™”
+
+select ì´ë¦„, ì ìˆ˜
+from ì„±ì 
+where ì ìˆ˜ >= 90
 
 -- https://injun379.tistory.com/113
 
--- ¹®ÀÚ¿­ ºñ±³¿Í ¿ÍÀÏµåÄ«µå
+-- ë¬¸ìžì—´ ë¹„êµì™€ ì™€ì¼ë“œì¹´ë“œ
 
 -- like, not like
 
-select ÀÌ¸§, Á¡¼ö
-from ¼ºÀû
-where ÀÌ¸§ like '±è%'
+select ì´ë¦„, ì ìˆ˜
+from ì„±ì 
+where ì´ë¦„ like 'ê¹€%'
 
-/* ¡®±è¡¯À¸·Î ½ÃÀÛÇÏ´Â ±ÛÀÚ °Ë»ö (Á¤È®ÇÑ °Ë»öÀÌ ¾Æ´Ï¶ó
-ºÎºÐ¸ÅÄªÇÏ´Â °ÍÀÌ¹Ç·Î like ¸¦ »ç¿ë)*/-- _ / book_ = book+@(char) / books, booka, booky-- % / book% = book+@ / book, books, booker, bookanistan-- % / %book% = includes book / timbooker, timbooksttaks-- [] / [bo]ing = ½ÃÀÛÀÌ b/o·Î ½ÃÀÛÇØ¼­ ing·Î ³¡³ª´Â ¹®ÀÚ / boring, booking, bookmaxxing....-- [] / [b-f]ing = b~f±îÁöÀÇ ´ÜÀÏ ¹®ÀÚ°¡ front / bing_chilling, ding, eing, fing-- [^] / M[^c]% = [^]¾ÈÀÇ ¹®ÀÚ Á¦¿Ü / Mike/Many/Mickeyselect * from ¼ºÀûwhere ÀÌ¸§ like 'ÀÌ%[¼®±â]'-- ¿¹Á¦2set rowcount 0select top 3 with ties * from ¼ºÀû order by Á¡¼ö -- ¿À¸§Â÷¼øÀÌ´Ï °¡Àå ³·Àº°Ô À§·Î °£´Ù´Â »ç½Ç!!!select ÇÐ¹ø, ÀÌ¸§, Á¡¼ö from ÇÐ»ýÆò°¡where Á¡¼ö >= 90select ÀÌ¸§, Á¶ÀÌ¸§ from ÇÐ»ýÆò°¡ where Á¶ÀÌ¸§ like'[A-Z]%'select ÇÐ¹ø, ÀÌ¸§ + '(' + ¼ºº° + ')'
- as [ÀÌ¸§(¼ºº°)]
-from ¼ºÀû
+/* â€˜ê¹€â€™ìœ¼ë¡œ ì‹œìž‘í•˜ëŠ” ê¸€ìž ê²€ìƒ‰ (ì •í™•í•œ ê²€ìƒ‰ì´ ì•„ë‹ˆë¼
+ë¶€ë¶„ë§¤ì¹­í•˜ëŠ” ê²ƒì´ë¯€ë¡œ like ë¥¼ ì‚¬ìš©)*/
 
--- ÇÐ¹ø , ÀÌ¸§+¼ºº° µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ ÀÌ¸§(¼ºº°)·Î Ç¥½Ã ÀÌ¸§À» °¡Á®¿Â´Ù
+-- _ / book_ = book+@(char) / books, booka, booky
+-- % / book% = book+@ / book, books, booker, bookanistan
+-- % / %book% = includes book / timbooker, timbooksttaks
+-- [] / [bo]ing = ì‹œìž‘ì´ b/oë¡œ ì‹œìž‘í•´ì„œ ingë¡œ ëë‚˜ëŠ” ë¬¸ìž / boring, booking, bookmaxxing....
+-- [] / [b-f]ing = b~fê¹Œì§€ì˜ ë‹¨ì¼ ë¬¸ìžê°€ front / bing_chilling, ding, eing, fing
+-- [^] / M[^c]% = [^]ì•ˆì˜ ë¬¸ìž ì œì™¸ / Mike/Many/Mickey
+
+
+
+select * from ì„±ì 
+where ì´ë¦„ like 'ì´%[ì„ê¸°]'
+
+
+
+
+
+-- ì˜ˆì œ2
+set rowcount 0
+select top 3 with ties * from ì„±ì  order by ì ìˆ˜ -- ì˜¤ë¦„ì°¨ìˆœì´ë‹ˆ ê°€ìž¥ ë‚®ì€ê²Œ ìœ„ë¡œ ê°„ë‹¤ëŠ” ì‚¬ì‹¤!!!
+
+select í•™ë²ˆ, ì´ë¦„, ì ìˆ˜ from í•™ìƒí‰ê°€
+where ì ìˆ˜ >= 90
+
+select ì´ë¦„, ì¡°ì´ë¦„ from í•™ìƒí‰ê°€ where ì¡°ì´ë¦„ like'[A-Z]%'
+
+select í•™ë²ˆ, ì´ë¦„ + '(' + ì„±ë³„ + ')'
+ as [ì´ë¦„(ì„±ë³„)]
+from ì„±ì 
+
+-- í•™ë²ˆ , ì´ë¦„+ì„±ë³„ ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ì„œ ì´ë¦„(ì„±ë³„)ë¡œ í‘œì‹œ ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤
 
 -- and, or, not
 
--- between a and b // a,b Æ÷ÇÔ ¹üÀ§ ³»
--- and ¿¬»êÀÚ·Î º¯°æ°¡´É (±×·¯³ª Á¡¼ö >= A and Á¡¼ö <= B ½ÄÀº ¸Þ¸ð¸®¸¦ 2¹ø ¸Ô´Â´Ù)
--- Not between a and b // a,bÆ÷ÇÔ ¹üÀ§ ¿Ü
--- or ¿¬»êÀÚ·Î º¯°æ°¡´É
+-- between a and b // a,b í¬í•¨ ë²”ìœ„ ë‚´
+-- and ì—°ì‚°ìžë¡œ ë³€ê²½ê°€ëŠ¥ (ê·¸ëŸ¬ë‚˜ ì ìˆ˜ >= A and ì ìˆ˜ <= B ì‹ì€ ë©”ëª¨ë¦¬ë¥¼ 2ë²ˆ ë¨¹ëŠ”ë‹¤)
+-- Not between a and b // a,bí¬í•¨ ë²”ìœ„ ì™¸
+-- or ì—°ì‚°ìžë¡œ ë³€ê²½ê°€ëŠ¥
 
 -- between 75 and 85 // 75. 76. 77....
 -- Not between 75 and 85, // 1, 2, 3.... 74, 86, 87....
 
 -- in
 
-select * from ¼ºÀû
- where ÀÌ¸§ in ('ÀÌÁ¾¼®', '¼ÛÁß±â', 'ÀÌ¿¬Èñ')
+select * from ì„±ì 
+ where ì´ë¦„ in ('ì´ì¢…ì„', 'ì†¡ì¤‘ê¸°', 'ì´ì—°í¬')
 
-select * from ¼ºÀû
- where ÀÌ¸§ not in ('ÀÌÁ¾¼®', '¼ÛÁß±â', 'ÀÌ¿¬Èñ')
+select * from ì„±ì 
+ where ì´ë¦„ not in ('ì´ì¢…ì„', 'ì†¡ì¤‘ê¸°', 'ì´ì—°í¬')
 
-select * from ¼ºÀû
-where ÀÌ¸§ != 'ÀÌÁ¾¼®' and ÀÌ¸§ != '¼ÛÁß±â' and ÀÌ¸§ != 'ÀÌ¿¬Èñ'
-
-
--- ¿¹Á¦3
-
-select * from ÇÐ»ýÆò°¡ where Á¶ÀÌ¸§ = '¹«ÇÑµµÀü' and  Á¡¼ö >= 80
-
-select * from ÇÐ»ýÆò°¡ where Á¡¼ö between 80 and 90
-
-select * from ÇÐ»ýÆò°¡ where Á¶ÀÌ¸§ = 'BIG' or Á¶ÀÌ¸§ = 'º£½ºÆ®' --order by Á¶ÀÌ¸§
+select * from ì„±ì 
+where ì´ë¦„ != 'ì´ì¢…ì„' and ì´ë¦„ != 'ì†¡ì¤‘ê¸°' and ì´ë¦„ != 'ì´ì—°í¬'
 
 
-SELECT ÀÌ¸§, Á¡¼ö+3 as '3Á¡Ãß°¡' from ¼ºÀû -- ½Ç µ¥ÀÌÅÍ´Â °Çµå¸®Áö ¾Ê°í 3Á¡ Ãß°¡ ÇØ¼­ °¡Á®¿À±â
+-- ì˜ˆì œ3
+
+select * from í•™ìƒí‰ê°€ where ì¡°ì´ë¦„ = 'ë¬´í•œë„ì „' and  ì ìˆ˜ >= 80
+
+select * from í•™ìƒí‰ê°€ where ì ìˆ˜ between 80 and 90
+
+select * from í•™ìƒí‰ê°€ where ì¡°ì´ë¦„ = 'BIG' or ì¡°ì´ë¦„ = 'ë² ìŠ¤íŠ¸' --order by ì¡°ì´ë¦„
+
+
+SELECT ì´ë¦„, ì ìˆ˜+3 as '3ì ì¶”ê°€' from ì„±ì  -- ì‹¤ ë°ì´í„°ëŠ” ê±´ë“œë¦¬ì§€ ì•Šê³  3ì  ì¶”ê°€ í•´ì„œ ê°€ì ¸ì˜¤ê¸°
 
 
 -- null
--- SQL¿¡¼­´Â unidentified Á¤µµ·Î º¸´Âµí
+-- SQLì—ì„œëŠ” unidentified ì •ë„ë¡œ ë³´ëŠ”ë“¯
 
-select * from Á¦Ç° where °¡°Ý is not null
+select * from ì œí’ˆ where ê°€ê²© is not null
 
 
 
--- ¿¹Á¦ 4
+-- ì˜ˆì œ 4
 
--- select Á¦Ç°¹øÈ£, Á¦Ç°¸í, °¡°Ý from Á¦Ç° where °¡°Ý is not null
-select Á¦Ç°¹øÈ£, Á¦Ç°¸í, floor(°¡°Ý*1.1) as 'ÃÖÁ¾°¡' from Á¦Ç° where °¡°Ý is not null 
-order by ÃÖÁ¾°¡ desc
+-- select ì œí’ˆë²ˆí˜¸, ì œí’ˆëª…, ê°€ê²© from ì œí’ˆ where ê°€ê²© is not null
+select ì œí’ˆë²ˆí˜¸, ì œí’ˆëª…, floor(ê°€ê²©*1.1) as 'ìµœì¢…ê°€' from ì œí’ˆ where ê°€ê²© is not null 
+order by ìµœì¢…ê°€ desc
 
+
+-- etc
+
+notì„ ì‚¬ìš©í•˜ì—¬ ê²€ìƒ‰ì„ ìžì œí•  ê²ƒ (ë©”ëª¨ë¦¬ ì´ìŠˆ 1)
+
+like ê²€ìƒ‰ì„ ìžì œí•˜ê³  ì¼ì¹˜í•˜ëŠ” ê²€ìƒ‰ì„ ì“°ìž (ë©”ëª¨ë¦¬ ì´ìŠˆ 2)
+
+order by êµ¬ë¬¸ì„ ìžì œí•˜ìž (ë³´í†µ ì„œë²„ì—ì„œ ì •ë ¬í•´ì„œ ì£¼ë‹ˆê¹Œ order by ì•ˆì¨ë„ ë ê±°ìž„)
+
+whereì ˆ ì™¼ìª½ì— ê³„ì‚°ì„ ë„£ì§€ ë§ˆë¼ 
+ex)
+where ì ìˆ˜ - 3 = 100 (X)
+where ì ìˆ˜ = 100+3 (O)
+
+selectì—ì„œ *ë¥¼ ë‚¨ë°œí•´ì„œ ìžë£Œë¥¼ ë‹¤ ê¸ì–´ì˜¤ì§€ ë§ˆë¼
